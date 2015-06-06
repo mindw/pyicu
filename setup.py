@@ -1,11 +1,8 @@
 
-import os, sys
+import os
+import sys
 
-try:
-    from setuptools import setup, Extension
-except ImportError:
-    from distutils.core import setup, Extension
-
+from setuptools import setup, Extension
 
 VERSION = '1.9.3'
 
@@ -82,6 +79,7 @@ if 'PYICU_LIBRARIES' in os.environ:
 else:
     _libraries = LIBRARIES[platform]
 
+from glob import glob
 
 setup(name="PyICU",
       description='Python extension wrapping the ICU C++ API',
@@ -105,14 +103,14 @@ setup(name="PyICU",
           'Programming Language :: Python :: Implementation :: PyPy',
           'Topic :: Software Development :: Localization',
           'Topic :: Software Development :: Internationalization'],
-      ext_modules=[Extension('_icu',
-                             [filename for filename in os.listdir(os.curdir)
-                              if filename.endswith('.cpp')],
+      ext_modules=[Extension('icu._icu',
+                             glob('src/*.cpp'),
                              include_dirs=_includes,
                              extra_compile_args=_cflags,
                              extra_link_args=_lflags,
                              libraries=_libraries)],
-      py_modules=['icu', 'PyICU', 'docs'])
+      packages=['icu']
+)
 
 
 if sys.version_info >= (3,):
