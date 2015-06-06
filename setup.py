@@ -18,7 +18,7 @@ CFLAGS = {
     'darwin': ['-DPYICU_VER="%s"' %(VERSION)],
     'linux': ['-DPYICU_VER="%s"' %(VERSION)],
     'freebsd': ['-DPYICU_VER="%s"' %(VERSION)],
-    'win32': ['/Zc:wchar_t', '/EHsc', '/DPYICU_VER=\\"%s\\"' %(VERSION)],
+    'win32': ['/D_CRT_NONSTDC_NO_DEPRECATE', '/Zc:wchar_t', '/EHsc', '/DPYICU_VER=\\"%s\\"' %(VERSION)],
     'sunos5': ['-DPYICU_VER="%s"' %(VERSION)],
 }
 

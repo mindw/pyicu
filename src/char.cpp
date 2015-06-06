@@ -427,7 +427,7 @@ static UBool t_char_enum_types_cb(
     if (obj == NULL)
         return false;
 
-    bool result = PyObject_IsTrue(obj);
+    bool result = !!PyObject_IsTrue(obj);
 
     Py_DECREF(obj);
 
@@ -568,7 +568,7 @@ static UBool t_char_enum_names_cb(
     if (obj == NULL)
         return false;
 
-    bool result = PyObject_IsTrue(obj);
+    bool result = !!PyObject_IsTrue(obj);
 
     Py_DECREF(obj);
 
